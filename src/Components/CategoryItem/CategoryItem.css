@@ -1,0 +1,51 @@
+.list-container{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     
+  
+}
+.list-item{
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+input{
+width: 130px;
+height: 30px;
+}
+
+.item-text{
+   width: 130px; 
+   height: 30px;
+   color: black;
+   background-color: orange;
+}
+
+.item-button{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    border-radius: 50%;
+    font-size: 10px;
+    cursor: pointer;
+     display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+.add{
+    background-color: gray;
+}
+.save {
+    background-color: green;
+}
+.delete {
+    background-color: red;
+}
+.edit{
+    background-color: darkslateblue;
+     font-size: 14px;
+}
