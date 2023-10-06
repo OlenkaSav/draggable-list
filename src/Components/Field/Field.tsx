@@ -3,13 +3,8 @@ import Element from '../Element/Element';
 import './Field.css';
 
 
-type Item = {
-    isEditing: boolean,  
-    text: string,
-    children: []
-}
-
-const Field = ({position, setPosition, scale}: any) => {
+const Field = ({ position, setPosition, scale }: any) => {
+  
   const [elements, setElements] = useState<{ text: string; isEditing: boolean; children: []; }[]>([]);
   const [isDragging, setIsDragging] = useState(true);
 
@@ -19,17 +14,10 @@ const Field = ({position, setPosition, scale}: any) => {
 
   const deleteElement = (indexToDelete: number) => {
     const updatedElements = [...elements];
-    updatedElements.splice(indexToDelete, 1); // Удалить элемент по индексу
-    setElements(updatedElements); // Обновить состояние
+    updatedElements.splice(indexToDelete, 1);
+    setElements(updatedElements);
   };
 
-  // const updateElement = (indexToUpdate: number, updatedElement: Item) => {
-  //   const updatedElements = [...elements];
-  //   updatedElements[indexToUpdate] = updatedElement;
-  //   setElements(updatedElements);
-  // };
-
-  
   const handleMouseOver = (e: any) => {
        if (e.target.tagName === 'INPUT') {
           setIsDragging(false)
@@ -82,16 +70,9 @@ const Field = ({position, setPosition, scale}: any) => {
             key={index}
             element={element}
             onDelete={() => deleteElement(index)}
-            // onUpdate={(updatedElement) => updateElement(index, updatedElement)}
           />
         ))}
-      </ul>
-      
-      <button 
-        onClick={()=>console.log(elements)}>
-               console
-      </button>
-          
+      </ul>          
     </div>
   );
 }

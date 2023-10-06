@@ -9,7 +9,6 @@ type Item = {
 type ElementProps = {
     element: Item;
     onDelete: () => void;
-    // onUpdate: (updatedElement: any) => void
 };
 
 function Element({ element, onDelete} :ElementProps) {
@@ -17,44 +16,33 @@ function Element({ element, onDelete} :ElementProps) {
     const [key, setKey] = useState(0);
 
   const handleEdit = () => {
-      element.isEditing = true;
-      setKey(key+1)
+    element.isEditing = true;
+    setKey(key + 1);
   };
 
   const handleSave = () => {
-      
-    //   const updatedElement = { ...element, text: editedText };
-    //   onUpdate(updatedElement); 
-      element.isEditing = false;
-      element.text = editedText;
-        setKey(key+1)
+    element.isEditing = false;
+    element.text = editedText;
+    setKey(key + 1);
   };
 
-    const handleDelete = () => {
-        onDelete(); 
-          setKey(key+1)
-    
+  const handleDelete = () => {
+    onDelete(); 
+    setKey(key + 1);   
   };
 
   const handleAddChild = () => {
-      element.children.push({ text: '', isEditing: true, children: [] });
-      setKey(key+1)
-    
+    element.children.push({ text: '', isEditing: true, children: [] });
+    setKey(key + 1);    
   };
     
   const deleteElement = (indexToDelete: number) => {
     const updatedElements = [...element.children];
     updatedElements.splice(indexToDelete, 1);
-      element.children = [...updatedElements];
-      setKey(key+1)
+    element.children = [...updatedElements];
+    setKey(key + 1);
     
   };
-
-//     const updateElement = (indexToUpdate: number, updatedElement: Item) => {
-//         const updatedElements = [...element.children];
-//         updatedElements[indexToUpdate] = updatedElement;
-//         element.children = [...updatedElements];
-//   };
 
     return (
      <li className="list-container">
@@ -72,9 +60,7 @@ function Element({ element, onDelete} :ElementProps) {
                   &#10006;
                 </button>
                 <button className="item-button save"
-                        onClick={handleSave}
-                    // onClick={() => onEdit(editedItem, index)}
-                    >
+                        onClick={handleSave}>
                 &#10004;
                 </button>                       
             </div>
@@ -103,7 +89,6 @@ function Element({ element, onDelete} :ElementProps) {
                 key={index}
                 element={childElement}
                 onDelete={() => deleteElement(index)}
-            // onUpdate={(updatedElement) => updateElement(index, updatedElement)}
             />
         ))}
        </ul>

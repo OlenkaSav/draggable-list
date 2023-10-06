@@ -21,10 +21,9 @@ const ScaleControl = ({ scale, setScale }) => {
     setIsOpen(!isOpen);
   };
 
-  // Обработчик выбора элемента
   const handleSelectItem = (item) => {
     setScale(item);
-    setIsOpen(false); // Закрываем список после выбора
+    setIsOpen(false);
   };
 
   return (
