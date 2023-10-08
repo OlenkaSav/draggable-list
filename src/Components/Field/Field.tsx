@@ -2,14 +2,21 @@ import React, { useState } from 'react';
 import Element from '../Element/Element';
 import './Field.css';
 
+type Item = {
+    isEditing: boolean,  
+    text: string,
+    children?: Item[],
+    level?: number
+}
+
 
 const Field = ({ position, setPosition, scale }: any) => {
   
-  const [elements, setElements] = useState<{ text: string; isEditing: boolean; children: []; }[]>([]);
+  const [elements, setElements] = useState<{ text: string; isEditing: boolean; children: []; level: number }[]>([]);
   const [isDragging, setIsDragging] = useState(true);
 
   const addElement = () => {
-    setElements([...elements, { text: '', isEditing: true, children: [] }]);
+    setElements([...elements, { text: '', isEditing: true, children: [], level:0 }]);
   };
 
   const deleteElement = (indexToDelete: number) => {

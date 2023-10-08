@@ -4,7 +4,8 @@ import './Element.css'
 type Item = {
     isEditing: boolean,  
     text: string,
-    children: Item[]
+    children: Item[],
+    level: number
 }
 type ElementProps = {
     element: Item;
@@ -32,7 +33,7 @@ function Element({ element, onDelete} :ElementProps) {
   };
 
   const handleAddChild = () => {
-    element.children.push({ text: '', isEditing: true, children: [] });
+    element.children.push({ text: '', isEditing: true, children: [], level: element.level+1 });
     setKey(key + 1);    
   };
     
@@ -42,6 +43,21 @@ function Element({ element, onDelete} :ElementProps) {
     element.children = [...updatedElements];
     setKey(key + 1);
     
+  };
+
+  const getColorForLevel = (level: number) => {
+    switch (level) {
+      case 0:
+        return 'orange';
+      case 1:
+        return '#34ebe1';
+      case 2:
+        return '#1fed41';
+      case 3:
+        return '#bd8bf0';
+      default:
+        return 'yellow';
+    }
   };
 
     return (
@@ -66,7 +82,7 @@ function Element({ element, onDelete} :ElementProps) {
             </div>
       ) : (
             <div className="list-item">
-                <p className="item-text">{element.text}</p> 
+                <p className="item-text" style={{ backgroundColor: getColorForLevel(element.level)}}>{element.text}</p> 
                 <button className="item-button add"
                         onClick={handleAddChild}>
                 &#10133;
